@@ -1,0 +1,19 @@
+class Solution:
+    def fractionalknapsack(self, val, wt, capacity):
+        #code here
+        
+        items = [(val[i],wt[i],val[i]/wt[i]) for i in range(len(val))]
+        items.sort(key = lambda x : x[2], reverse = True)
+        res = 0.0
+        
+        for value,weight,ratio in items :
+            
+            if capacity >= weight:
+                res+=value
+                capacity-=weight
+            else :
+                res+=ratio*capacity
+                break
+        return res
+        
+            
