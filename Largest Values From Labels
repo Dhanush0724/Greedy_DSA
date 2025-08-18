@@ -1,0 +1,23 @@
+class Solution:
+    def largestValsFromLabels(self, values: List[int], labels: List[int], numWanted: int, useLimit: int) -> int:
+
+      pairs = []
+      
+      for i in range(len(values)):
+        pairs.append((values[i],labels[i]))
+      
+      pairs.sort(key = lambda x : x[0], reverse = True)
+      hash_map = {}
+      total = 0
+      picked = 0
+      for val,lab in pairs:
+        if picked == numWanted:
+          break
+        if hash_map.get(lab,0) < useLimit:
+          total+=val
+          hash_map[lab] = hash_map.get(lab,0)+1
+          picked+=1
+      return total
+
+
+        
